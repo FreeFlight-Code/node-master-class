@@ -20,9 +20,11 @@ const server = http.createServer((req, res)=>{
 	// get the request method
 	const method = req.method.toLowerCase();
 
+	// get the query string as an object
+	const queryStringObject = parsedUrl.query;
 	
 	// log the request path
-	console.log(`REQUEST: ${trimmedPath} with METHOD: ${method}`)
+	console.log(`REQUEST: ${trimmedPath} with METHOD: ${method} with these QUERY_PARAMS: ${JSON.stringify(queryStringObject)}`)
 	
 	// send the response
 	res.end('Hello World\n');
