@@ -51,8 +51,12 @@ const server = http.createServer((req, res)=>{
 			// default status code
 			statusCode = typeof(statusCode) == 'number' ? statusCode : 200;
 			payload = typeof(payload) == 'object' ? payload : {};
+
+
+
 			// use payload from handler or default to default payload
 			let payloadString = JSON.stringify(payload)
+			res.setHeader('Content-Type', 'application/json')
 			res.writeHead(statusCode);
 			res.end(payloadString);
 			
