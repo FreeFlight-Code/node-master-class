@@ -22,9 +22,12 @@ const server = http.createServer((req, res)=>{
 
 	// get the query string as an object
 	const queryStringObject = parsedUrl.query;
+
+	// get headers
+	const headers = req.headers;
 	
 	// log the request path
-	console.log(`REQUEST: ${trimmedPath} with METHOD: ${method} with these QUERY_PARAMS: ${JSON.stringify(queryStringObject)}`)
+	console.log(`REQUEST: ${trimmedPath}\nMETHOD: ${method}\nQUERY_PARAMS: ${JSON.stringify(queryStringObject)}\nHEADERS: ${JSON.stringify(headers)}`)
 	
 	// send the response
 	res.end('Hello World\n');
