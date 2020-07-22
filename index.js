@@ -7,6 +7,8 @@
 // Dependencies
 const http = require('http');
 const url = require('url');
+const { StringDecoder } = require('string_decoder');
+const stringDecoded = require('string_decoder').StringDecoder;
 
 const server = http.createServer((req, res)=>{
 	
@@ -25,9 +27,25 @@ const server = http.createServer((req, res)=>{
 
 	// get headers
 	const headers = req.headers;
+
+	// get and parse payload if available
+	const decoder = new StringDecoder('utf-8');
+	var buffer = '';
+	req.on('data', function () {
+		buffer += decoder.write(data);
+	});
+	req.on('end', function () {
+		buffer += decoder.end();
+	});
 	
 	// log the request path
-	console.log(`REQUEST: ${trimmedPath}\nMETHOD: ${method}\nQUERY_PARAMS: ${JSON.stringify(queryStringObject)}\nHEADERS: ${JSON.stringify(headers)}`)
+	console.log(`
+	REQUEST: ${trimmedPath}
+	METHOD: ${method}
+	QUERY_PARAMS: ${JSON.stringify(queryStringObject)}
+	HEADERS: ${JSON.stringify(headers)}
+	PAYLOAD: ${buffer}
+	`)
 	
 	// send the response
 	res.end('Hello World\n');
