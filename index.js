@@ -67,6 +67,7 @@ var unifiedServer = function (req, res) {
 		buffer += decoder.end();
 
 		// choose the handler this request should go to, if not found use notFound handler
+		console.log(trimmedPath)
 		const chosenHandler = router.hasOwnProperty(trimmedPath) ? router[trimmedPath] : handlers.notFound;
 		const data = {
 			'trimmedPath': trimmedPath,
@@ -96,8 +97,8 @@ var unifiedServer = function (req, res) {
 
 // Define the handlers
 const handlers = {
-	sample: (data, callback)=>{
-		callback(406, {'name': 'sample handler'})
+	ping: (data, callback)=>{
+		callback(200)
 	},
 	notFound: (data, callback)=>{
 		callback(404)
@@ -106,5 +107,5 @@ const handlers = {
 
 // Define a request router
 const router = {
-	'sample' : handlers.sample
+	'ping' : handlers.ping
 }
