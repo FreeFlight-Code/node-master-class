@@ -12,7 +12,7 @@ const { StringDecoder } = require('string_decoder');
 const stringDecoded = require('string_decoder').StringDecoder;
 const config = require('./config.js');
 const fs = require('fs');
-
+const _data = require('./lib/data')
 
 // start the server and have it listen on port 3000
 const httpServer = http.createServer((req, res)=>{
