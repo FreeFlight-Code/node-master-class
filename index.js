@@ -89,13 +89,14 @@ var unifiedServer = function (req, res) {
 			res.writeHead(statusCode);
 			res.end(payloadString);
 			
-			console.log(`Returning this STATUSCODE: ${statusCode}...PAYLOAD: ${payloadString}`)
+			// console.log(`Returning this STATUSCODE: ${statusCode}...PAYLOAD: ${payloadString}`)
 		})
 	});
 }
 
 // Define a request router
 const router = {
+	'checks' : handlers.checks,
 	'tokens' : handlers.tokens,
 	'ping' : handlers.ping,
 	'users': handlers.users
